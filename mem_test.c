@@ -18,9 +18,7 @@
 // make memttest_sys to use system malloc
 // make memtest_dev to use modified malloc
 
-// ./main to run the program
-
-// TODO: Implement a more indepth test function (probably a string that is dynamically allocated adding more characters to it).
+// ./__name__ to run the program
 
 int rand_between(int min, int max) {
     return rand() % (max - min + 1) + min;
@@ -61,37 +59,8 @@ int main(int argc, char* argv[]) {
     for (int ix = 0; ix < TEST_SIZE; ix++) {
         fprintf(stderr, "[%d] freeing '%p' (%s)\n", ix, ptrs[ix], ptrs[ix]);
         modFree(ptrs[ix]);
-        fprintf(stderr, "[%d] freed %p]n", ix, ptrs[ix]);
+        fprintf(stderr, "[%d] freed '%p'\n", ix, ptrs[ix]);
     }
-
-    return 0;
-
-    // REMOVE LATER // 
-    // Array test
-    int size = 3;
-    printf("Testing Memmory Allocator\n");
-    
-    printf("Creating dynamic array using malloc\n");
-    printf("Enter the size of the array:\n");
-
-    int* array = (int*)modMalloc(sizeof(int) * size);
-
-    // Populate array
-    for (int i = 0; i < size; i++) {
-        array[i] = i;
-    }
-
-    // Print array
-    for (int i = 0; i < size; i++) {
-        printf("%d\n", array[i]);
-    }
-
-    // Free array
-    modFree(array);
-
-    // Done testing
-    printf("Done testing Memmory Allocator\n");
-    // END OF ARRAY TEST
 
     return 0;
 }
