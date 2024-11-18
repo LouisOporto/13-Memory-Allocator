@@ -18,7 +18,7 @@
 // make memttest_sys to use system malloc
 // make memtest_dev to use modified malloc
 
-// ./__name__ to run the program
+// ./__name__ {optional sentence} to run the program
 
 int rand_between(int min, int max) { return rand() % (max - min + 1) + min; }
 
@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
 
     for (int ix = 0; ix < TEST_SIZE; ix++) {
         int size = rand_between(1, 30);
-        fprintf(stderr, "[%d] size: '%d'\n", ix, size);
+        fprintf(stderr, "[%d] size: %d\n", ix, size);
 
         ptrs[ix] = (char *)modMalloc(size);
         if (ptrs[ix] == NULL) {
@@ -54,13 +54,13 @@ int main(int argc, char *argv[]) {
         strncpy(ptrs[ix], test_string, len_to_copy);
         ptrs[ix][len_to_copy] = '\0';
 
-        fprintf(stderr, "[%x] %s\n", ix, ptrs[ix]);
+        fprintf(stderr, "[%x] '%s'\n", ix, ptrs[ix]);
     }
 
     for (int ix = 0; ix < TEST_SIZE; ix++) {
-        fprintf(stderr, "[%d] freeing '%p' (%s)\n", ix, ptrs[ix], ptrs[ix]);
+        fprintf(stderr, "[%d] freeing %p (%s)\n", ix, ptrs[ix], ptrs[ix]);
         modFree(ptrs[ix]);
-        fprintf(stderr, "[%d] freed '%p'\n", ix, ptrs[ix]);
+        fprintf(stderr, "[%d] freed %p\n", ix, ptrs[ix]);
     }
 
     return 0;
