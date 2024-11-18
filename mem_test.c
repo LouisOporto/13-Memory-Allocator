@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 
-// #define SYSTEM_MALLOC
+//-DSYSTEM_MALLOC
 #ifdef SYSTEM_MALLOC
 #define modFree free
 #define modMalloc malloc
@@ -20,14 +20,14 @@
 
 // ./__name__ to run the program
 
-int rand_between(int min, int max) {
-    return rand() % (max - min + 1) + min;
-}
+int rand_between(int min, int max) { return rand() % (max - min + 1) + min; }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     srand(time(NULL));
 
-    char *test_string = "Now is the time for all good people to come to the aid of thei country.";
+    char *test_string =
+        "Now is the time for all good people to come to the aid of thei "
+        "country.";
 
     // String test
     if (argc > 1) {
@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
         int size = rand_between(1, 30);
         fprintf(stderr, "[%d] size: '%d'\n", ix, size);
 
-        ptrs[ix] = (char*)modMalloc(size);
+        ptrs[ix] = (char *)modMalloc(size);
         if (ptrs[ix] == NULL) {
             fprintf(stderr, "malloc failed\n");
             exit(1);
@@ -48,7 +48,8 @@ int main(int argc, char* argv[]) {
 
         int len_to_copy = MIN(strlen(test_string), size);
 
-        fprintf(stderr, "[%d] ptrs[%d]: %p, going to copy %d chars\n", ix, ix, ptrs[ix], len_to_copy);
+        fprintf(stderr, "[%d] ptrs[%d]: %p, going to copy %d chars\n", ix, ix,
+                ptrs[ix], len_to_copy);
 
         strncpy(ptrs[ix], test_string, len_to_copy);
         ptrs[ix][len_to_copy] = '\0';
