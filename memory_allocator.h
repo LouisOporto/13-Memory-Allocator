@@ -6,9 +6,10 @@
 // Define memory interface
 void* modMalloc(int size); // malloc reset allocated blocks to 0
 
-void* modRealloc(void* ptr, int size);
-
 void modFree(void* ptr);
+
+void* modRealloc(void* ptr, int size); // Less focus on this for now
+
 
 // Future editions include
 // Utilizing heap-based memory allocation
