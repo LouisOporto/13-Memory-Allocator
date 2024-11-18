@@ -3,16 +3,6 @@
 #ifndef MALLOC_H
 #define MALLOC_H
 
-// TODO names will be rewritten to just malloc, realloc, free (no mod prefix)
-
-// Define memory interface
-void* modMalloc(int size); // malloc reset allocated blocks to 0
-
-void modFree(void* ptr);
-
-void* modRealloc(void* ptr, int size); // Less focus on this for now
-
-
 // Define memory block structure
 typedef struct {
     int size;
@@ -20,9 +10,11 @@ typedef struct {
     void* data;
 } MemoryBlock;
 
-// Future editions include
-// Utilizing heap-based memory allocation
+// Define memory interface
+void* modMalloc(int size);  // malloc reset allocated blocks to 0
 
-// All strucures are store in this block
-// Minheap for freeb blocs in final version, but arrays for now
+void modFree(void* ptr);
+
+void* modRealloc(void* ptr, int size);  // Less focus on this for now
+
 #endif
