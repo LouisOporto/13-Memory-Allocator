@@ -11,6 +11,16 @@ void modFree(void* ptr);
 void* modRealloc(void* ptr, int size); // Less focus on this for now
 
 
+// Define memory block structure
+typedef struct {
+    int size;
+    int isFree;
+    void* data;
+} MemoryBlock;
+
+// Define memory block array
+MemoryBlock* memoryBlocks;
+
 // Future editions include
 // Utilizing heap-based memory allocation
 
